@@ -27,6 +27,7 @@ namespace CharacterCreator
         {
             InitializeComponent();
             drawArea = new Bitmap(pictureBox.Width, pictureBox.Height);
+            
         }
         private void buttonLoad_Click(object sender, EventArgs e)
         {

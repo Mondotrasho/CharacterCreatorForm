@@ -31,9 +31,13 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBoxSheets = new System.Windows.Forms.ComboBox();
-            this.listBoxTiles = new System.Windows.Forms.ListBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.listViewTiles = new System.Windows.Forms.ListView();
+            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.priority = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tilex = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tiley = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,14 +65,6 @@
             this.comboBoxSheets.TabIndex = 2;
             this.comboBoxSheets.SelectedValueChanged += new System.EventHandler(this.comboBoxSheets_SelectedValueChanged);
             // 
-            // listBoxTiles
-            // 
-            this.listBoxTiles.FormattingEnabled = true;
-            this.listBoxTiles.Location = new System.Drawing.Point(549, 89);
-            this.listBoxTiles.Name = "listBoxTiles";
-            this.listBoxTiles.Size = new System.Drawing.Size(239, 264);
-            this.listBoxTiles.TabIndex = 3;
-            // 
             // buttonAdd
             // 
             this.buttonAdd.Location = new System.Drawing.Point(570, 381);
@@ -89,14 +85,47 @@
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
+            // listViewTiles
+            // 
+            this.listViewTiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.name,
+            this.priority,
+            this.tilex,
+            this.tiley});
+            this.listViewTiles.LabelEdit = true;
+            this.listViewTiles.Location = new System.Drawing.Point(549, 93);
+            this.listViewTiles.MultiSelect = false;
+            this.listViewTiles.Name = "listViewTiles";
+            this.listViewTiles.Size = new System.Drawing.Size(239, 269);
+            this.listViewTiles.TabIndex = 6;
+            this.listViewTiles.UseCompatibleStateImageBehavior = false;
+            this.listViewTiles.View = System.Windows.Forms.View.Details;
+            this.listViewTiles.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.listView1_AfterLabelEdit);
+            // 
+            // name
+            // 
+            this.name.Text = "name";
+            // 
+            // priority
+            // 
+            this.priority.Text = "priority";
+            // 
+            // tilex
+            // 
+            this.tilex.Text = "tilex";
+            // 
+            // tiley
+            // 
+            this.tiley.Text = "tiley";
+            // 
             // SpriteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.listViewTiles);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.listBoxTiles);
             this.Controls.Add(this.comboBoxSheets);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox);
@@ -114,8 +143,12 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox comboBoxSheets;
-        private System.Windows.Forms.ListBox listBoxTiles;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.ListView listViewTiles;
+        private System.Windows.Forms.ColumnHeader name;
+        private System.Windows.Forms.ColumnHeader priority;
+        private System.Windows.Forms.ColumnHeader tilex;
+        private System.Windows.Forms.ColumnHeader tiley;
     }
 }

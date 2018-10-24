@@ -17,6 +17,7 @@ namespace CharacterCreator
         public int GridWidth { get; set; } = 16;
         public int GridHeight { get; set; } = 16;
         public int Spacing { get; set; } = 1;
+
         public string Filename
         {
             get { return Path.Substring(Path.LastIndexOf('\\')); }
@@ -24,7 +25,8 @@ namespace CharacterCreator
 
         public Image image { get; set; }
 
-    private string path;
+        private string path;
+
         public int Width
         {
             get

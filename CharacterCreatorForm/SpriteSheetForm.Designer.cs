@@ -75,7 +75,7 @@
             this.Spacing.Name = "Spacing";
             this.Spacing.Size = new System.Drawing.Size(100, 20);
             this.Spacing.TabIndex = 3;
-            this.Spacing.Text = "0";
+            this.Spacing.Text = "1";
             this.Spacing.TextChanged += new System.EventHandler(this.Spacing_TextChanged);
             // 
             // buttonLoad
