@@ -17,7 +17,7 @@ namespace CharacterCreatorForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SpriteSheetForm());
+            Application.Run(new MainWindow());
         }
     }
 }

@@ -48,6 +48,12 @@
     <Compile Include="Character.cs" />
     <Compile Include="Container stuff.cs" />
     <Compile Include="Layer.cs" />
+    <Compile Include="SpriteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpriteForm.Designer.cs">
+      <DependentUpon>SpriteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Spritesheet.cs" />
     <Compile Include="SpriteSheetForm.cs">
       <SubType>Form</SubType>
@@ -75,6 +81,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SpriteForm.resx">
+      <DependentUpon>SpriteForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SpriteSheetForm.resx">
       <DependentUpon>SpriteSheetForm.cs</DependentUpon>
     </EmbeddedResource>

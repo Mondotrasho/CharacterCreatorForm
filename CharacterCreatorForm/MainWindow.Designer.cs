@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewSprite = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewSpriteSheet = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,8 +83,6 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.NewSpriteSheet = new System.Windows.Forms.ToolStripMenuItem();
-            this.NewSprite = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -123,6 +123,20 @@
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.Size = new System.Drawing.Size(35, 20);
             this.fileMenu.Text = "&File";
+            // 
+            // NewSprite
+            // 
+            this.NewSprite.Name = "NewSprite";
+            this.NewSprite.Size = new System.Drawing.Size(180, 22);
+            this.NewSprite.Text = "New Sprite";
+            this.NewSprite.Click += new System.EventHandler(this.NewSprite_Click);
+            // 
+            // NewSpriteSheet
+            // 
+            this.NewSpriteSheet.Name = "NewSpriteSheet";
+            this.NewSpriteSheet.Size = new System.Drawing.Size(180, 22);
+            this.NewSpriteSheet.Text = "New Sprite Sheet";
+            this.NewSpriteSheet.Click += new System.EventHandler(this.NewSpriteSheet_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -517,19 +531,6 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(38, 17);
             this.toolStripStatusLabel.Text = "Status";
-            // 
-            // NewSpriteSheet
-            // 
-            this.NewSpriteSheet.Name = "NewSpriteSheet";
-            this.NewSpriteSheet.Size = new System.Drawing.Size(180, 22);
-            this.NewSpriteSheet.Text = "New Sprite Sheet";
-            this.NewSpriteSheet.Click += new System.EventHandler(this.NewSpriteSheet_Click);
-            // 
-            // NewSprite
-            // 
-            this.NewSprite.Name = "NewSprite";
-            this.NewSprite.Size = new System.Drawing.Size(180, 22);
-            this.NewSprite.Text = "New Sprite";
             // 
             // MainWindow
             // 

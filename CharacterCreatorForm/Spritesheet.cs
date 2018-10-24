@@ -10,8 +10,18 @@ namespace CharacterCreator
 {
     using System.IO;
 
-    class Spritesheet
+    public class Spritesheet
     {
+
+        public string Path { get; private set; }
+        public int GridWidth { get; set; } = 16;
+        public int GridHeight { get; set; } = 16;
+        public int Spacing { get; set; } = 1;
+        public string Filename
+        {
+            get { return Path.Substring(Path.LastIndexOf('\\')); }
+        }
+
         public Image image { get; set; }
 
     private string path;
@@ -32,22 +42,15 @@ namespace CharacterCreator
 
         public Spritesheet(string path)
         {
-            this.path = path;
-            Load();
+            Path = path;
+            image = Image.FromFile(path);
         }
 
-        public void Load()
-        {
-            
-            {
-                this.image = Image.FromFile(path);
-            }
-        }
         public override string ToString()
         {
-            return base.ToString() + ": " + path.ToString();
+            return Filename;
         }
-        
+
     }
 }
 
