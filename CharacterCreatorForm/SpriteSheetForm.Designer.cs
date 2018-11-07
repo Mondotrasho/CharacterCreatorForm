@@ -28,116 +28,110 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SpriteSheetForm));
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.Width = new System.Windows.Forms.TextBox();
-            this.Height = new System.Windows.Forms.TextBox();
-            this.Spacing = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxWidth = new System.Windows.Forms.TextBox();
+            this.textBoxHeight = new System.Windows.Forms.TextBox();
             this.buttonLoad = new System.Windows.Forms.Button();
-            this.TEXT1 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxSpacing = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox
+            // pictureBox1
             // 
-            this.pictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox.InitialImage")));
-            this.pictureBox.Location = new System.Drawing.Point(13, 13);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(775, 333);
-            this.pictureBox.TabIndex = 0;
-            this.pictureBox.TabStop = false;
-            this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(724, 421);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // Width
+            // label1
             // 
-            this.Width.Location = new System.Drawing.Point(74, 366);
-            this.Width.Name = "Width";
-            this.Width.Size = new System.Drawing.Size(100, 20);
-            this.Width.TabIndex = 1;
-            this.Width.Tag = "";
-            this.Width.Text = "16";
-            this.Width.TextChanged += new System.EventHandler(this.Width_TextChanged);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 439);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Tile Width";
             // 
-            // Height
+            // label2
             // 
-            this.Height.Location = new System.Drawing.Point(74, 392);
-            this.Height.Name = "Height";
-            this.Height.Size = new System.Drawing.Size(100, 20);
-            this.Height.TabIndex = 2;
-            this.Height.Text = "16";
-            this.Height.TextChanged += new System.EventHandler(this.Height_TextChanged);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 465);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Tile Height";
             // 
-            // Spacing
+            // textBoxWidth
             // 
-            this.Spacing.Location = new System.Drawing.Point(74, 418);
-            this.Spacing.Name = "Spacing";
-            this.Spacing.Size = new System.Drawing.Size(100, 20);
-            this.Spacing.TabIndex = 3;
-            this.Spacing.Text = "1";
-            this.Spacing.TextChanged += new System.EventHandler(this.Spacing_TextChanged);
+            this.textBoxWidth.Location = new System.Drawing.Point(73, 436);
+            this.textBoxWidth.Name = "textBoxWidth";
+            this.textBoxWidth.Size = new System.Drawing.Size(100, 20);
+            this.textBoxWidth.TabIndex = 3;
+            this.textBoxWidth.Text = "16";
+            this.textBoxWidth.TextChanged += new System.EventHandler(this.textBoxWidth_TextChanged);
+            // 
+            // textBoxHeight
+            // 
+            this.textBoxHeight.Location = new System.Drawing.Point(73, 462);
+            this.textBoxHeight.Name = "textBoxHeight";
+            this.textBoxHeight.Size = new System.Drawing.Size(100, 20);
+            this.textBoxHeight.TabIndex = 4;
+            this.textBoxHeight.Text = "16";
+            this.textBoxHeight.TextChanged += new System.EventHandler(this.textBoxHeight_TextChanged);
             // 
             // buttonLoad
             // 
-            this.buttonLoad.Location = new System.Drawing.Point(680, 362);
+            this.buttonLoad.Location = new System.Drawing.Point(660, 440);
             this.buttonLoad.Name = "buttonLoad";
             this.buttonLoad.Size = new System.Drawing.Size(75, 23);
-            this.buttonLoad.TabIndex = 4;
+            this.buttonLoad.TabIndex = 5;
             this.buttonLoad.Text = "Load";
             this.buttonLoad.UseVisualStyleBackColor = true;
             this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
-            // TEXT1
+            // label3
             // 
-            this.TEXT1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TEXT1.Location = new System.Drawing.Point(13, 366);
-            this.TEXT1.Name = "TEXT1";
-            this.TEXT1.ReadOnly = true;
-            this.TEXT1.Size = new System.Drawing.Size(55, 13);
-            this.TEXT1.TabIndex = 5;
-            this.TEXT1.Tag = "";
-            this.TEXT1.Text = "Tile Width";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 491);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Spacing";
             // 
-            // textBox1
+            // textBoxSpacing
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(13, 392);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(55, 13);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.Tag = "";
-            this.textBox1.Text = "Tile Height";
-            // 
-            // textBox2
-            // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(13, 418);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(55, 13);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.Tag = "";
-            this.textBox2.Text = "Spacing";
+            this.textBoxSpacing.Location = new System.Drawing.Point(73, 488);
+            this.textBoxSpacing.Name = "textBoxSpacing";
+            this.textBoxSpacing.Size = new System.Drawing.Size(100, 20);
+            this.textBoxSpacing.TabIndex = 7;
+            this.textBoxSpacing.Text = "1";
+            this.textBoxSpacing.TextChanged += new System.EventHandler(this.textBoxSpacing_TextChanged);
             // 
             // SpriteSheetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.TEXT1);
+            this.ClientSize = new System.Drawing.Size(748, 533);
+            this.Controls.Add(this.textBoxSpacing);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonLoad);
-            this.Controls.Add(this.Spacing);
-            this.Controls.Add(this.Height);
-            this.Controls.Add(this.Width);
-            this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.textBoxHeight);
+            this.Controls.Add(this.textBoxWidth);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "SpriteSheetForm";
             this.Text = "Sprite Sheet";
+            this.Activated += new System.EventHandler(this.SpriteSheetForm_Activated);
             this.Shown += new System.EventHandler(this.SpriteSheetForm_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,14 +139,13 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox;
-        private System.Windows.Forms.TextBox Width;
-        private System.Windows.Forms.TextBox Height;
-        private System.Windows.Forms.TextBox Spacing;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxWidth;
+        private System.Windows.Forms.TextBox textBoxHeight;
         private System.Windows.Forms.Button buttonLoad;
-        private System.Windows.Forms.TextBox TEXT1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxSpacing;
     }
 }
-

@@ -1,25 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.Serialization;
+using System.IO;
 
 namespace CharacterCreator
 {
     public partial class SpriteForm : Form
     {
-        Spritesheet spritesheet = null;
         Bitmap drawArea = null;
 
-        List<Layer> layers = new List<Layer>();
+        Character character = new Character();
+
+        public Spritesheet Spritesheet
+        {
+            get { return character.Spritesheet; }
+            set
+            {
+                if (string.Compare(value.Path, character.Spritesheet.Path) == 0)
+                {
+                    // the path is the same, so we can simply replace the reference
+                    character.Spritesheet = value;
+                }
+                else
+                {
+                    // otherwise, we clear the layers too
+                    character.Spritesheet = value;
+                    character.Layers.Clear();
+                }
+            }
+        }
 
         public SpriteForm()
         {
             InitializeComponent();
+
             drawArea = new Bitmap(pictureBox.Width, pictureBox.Height);
         }
 
@@ -42,18 +57,25 @@ namespace CharacterCreator
                 }
             }
 
-            if (spritesheet != null)
+            if (character.Spritesheet != null)
             {
-                comboBoxSheets.SelectedItem = spritesheet;
+                comboBoxSheets.SelectedItem = character.Spritesheet;
             }
             else if (comboBoxSheets.Items.Count > 0)
             {
                 comboBoxSheets.SelectedIndex = 0;
-                spritesheet = comboBoxSheets.SelectedItem as Spritesheet;
+                character.Spritesheet = comboBoxSheets.SelectedItem as Spritesheet;
+            }
+
+            // fill list view with any layers the character has
+            listViewTiles.Items.Clear();
+            for (int i = 0; i < character.Layers.Count; i++)
+            {
+                listViewTiles.Items.Add(character.Layers[i].GetListViewItem());
             }
         }
 
-        SpriteSheetForm FindSheet()
+        public SpriteSheetForm FindSheet()
         {
             MdiClient parent = Parent as MdiClient;
             if (parent != null)
@@ -63,86 +85,121 @@ namespace CharacterCreator
                     if (child.GetType() == typeof(SpriteSheetForm))
                     {
                         SpriteSheetForm sheet = child as SpriteSheetForm;
-                        if (sheet.Spritesheet == spritesheet)
+                        if (sheet.Spritesheet == character.Spritesheet)
                             return sheet;
                     }
                 }
             }
             return null;
         }
+
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (spritesheet != null)
+            if (character != null)
             {
                 SpriteSheetForm sheet = FindSheet();
                 if (sheet != null)
                 {
                     Layer layer = new Layer("Unnamed Layer");
                     layer.TileCoordinates = sheet.CurrentTile;
-                    layer.Priority = layers.Count + 1;
-                    layers.Add(layer);
+                    layer.Priority = character.Layers.Count + 1;
+
+                    character.Layers.Add(layer);
+
                     listViewTiles.Items.Add(layer.GetListViewItem());
+
                     DrawCharacter();
                 }
             }
         }
+
         private void DrawCharacter()
         {
             Graphics g = Graphics.FromImage(drawArea);
             g.FillRectangle(Brushes.White, 0, 0, drawArea.Width, drawArea.Height);
+
             Rectangle dest = new Rectangle(0, 0,
-                spritesheet.GridWidth << 2, spritesheet.GridHeight << 2);
-            foreach (Layer layer in layers)
+                character.Spritesheet.GridWidth << 2,
+                character.Spritesheet.GridHeight << 2);
+
+            foreach (Layer layer in character.Layers)
             {
                 Rectangle source = new Rectangle(
-                    layer.TileCoordinates.X * (spritesheet.GridWidth +
-                                               spritesheet.Spacing),
-                    layer.TileCoordinates.Y * (spritesheet.GridHeight +
-                                               spritesheet.Spacing),
+                    layer.TileCoordinates.X * (character.Spritesheet.GridWidth + character.Spritesheet.Spacing),
+                    layer.TileCoordinates.Y * (character.Spritesheet.GridHeight + character.Spritesheet.Spacing),
+                    character.Spritesheet.GridWidth,
+                    character.Spritesheet.GridHeight);
 
-                    spritesheet.GridWidth,
-                    spritesheet.GridHeight);
-                g.DrawImage(spritesheet.image, dest, source, GraphicsUnit.Pixel);
+                g.DrawImage(character.Spritesheet.Image, dest, source, GraphicsUnit.Pixel);
             }
             g.Dispose();
+
             pictureBox.Image = drawArea;
         }
-        private void buttonDelete_Click(object sender, EventArgs e)
-        {
-            ListView.SelectedIndexCollection indicies =
-                listViewTiles.SelectedIndices;
-            if (indicies.Count <= 0)
-                return;
-            // remove the selected layer from the layers list
-            layers.RemoveAt(indicies[0]);
-            // delete and rebuild the list view (with updated priority values)
-            listViewTiles.Items.Clear();
-            // renumber layers
-            for (int i = 0; i < layers.Count; i++)
-            {
-                layers[i].Priority = i + 1;
-                listViewTiles.Items.Add(layers[i].GetListViewItem());
-            }
-            DrawCharacter();
-        }
+
         private void comboBoxSheets_SelectedValueChanged(object sender, EventArgs e)
         {
-            listViewTiles.Items.Clear();
-            layers.Clear();
+            // validate that a new item was actually selected (since this event is also called
+            // when initially setting the selected value during the Activated event handler)
+            if (character.Spritesheet == comboBoxSheets.SelectedItem as Spritesheet)
+                return;
 
-            spritesheet = comboBoxSheets.SelectedItem as Spritesheet;
+            // different spritesheet selected, clear the layers
+            listViewTiles.Items.Clear();
+
+            character.Spritesheet = comboBoxSheets.SelectedItem as Spritesheet;
+            character.Layers.Clear();
+
             // clear the image
+
             Graphics g = Graphics.FromImage(drawArea);
             g.FillRectangle(Brushes.White, 0, 0, drawArea.Width, drawArea.Height);
             g.Dispose();
             pictureBox.Image = drawArea;
         }
 
-        private void listView1_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            ListView.SelectedIndexCollection indicies = listViewTiles.SelectedIndices;
+            if (indicies.Count <= 0)
+                return;
+
+            // remove the selected layer from the layers list
+            character.Layers.RemoveAt(indicies[0]);
+
+            // delete and rebuild the list view (with updated priority values)
+            listViewTiles.Items.Clear();
+
+            // renumber layers
+            for (int i = 0; i < character.Layers.Count; i++)
+            {
+                character.Layers[i].Priority = i + 1;
+                listViewTiles.Items.Add(character.Layers[i].GetListViewItem());
+            }
+
+            DrawCharacter();
+        }
+
+        private void listViewTiles_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
             int index = e.Item;
-            layers[index].Name = e.Label;
-
+            character.Layers[index].Name = e.Label;
         }
+
+        public void SerializeItem(string fileName, IFormatter formatter)
+        {
+            FileStream s = new FileStream(fileName, FileMode.Create);
+            formatter.Serialize(s, character);
+            s.Close();
+        }
+
+        public void DeserializeItem(string fileName, IFormatter formatter)
+        {
+            FileStream s = new FileStream(fileName, FileMode.Open);
+            character = (Character)formatter.Deserialize(s);
+            s.Close();
+            DrawCharacter();
+        }
+
     }
 }
